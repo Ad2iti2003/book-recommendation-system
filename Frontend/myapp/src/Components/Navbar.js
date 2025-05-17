@@ -6,10 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <Box bgcolor={'darksalmon'}>
+    <Box bgcolor={'darksalmon'} sx={{position:'sticky',top:0}}>
         
            
                 <IconButton size="large"
@@ -20,9 +21,22 @@ function Navbar() {
                     <MenuIcon sx={{color:'white',}}/>
                 </IconButton>
                 <Typography>
-                    <Button sx={{color:'black',fontWeight: 900, mx: 4,my:2, fontSize:'20px'}}>Home</Button>
-                    <Button sx={{color:'black',fontWeight: 900, mx: 4,my:2, fontSize:'20px'}}>Recommedation</Button>
-                    <Button sx={{color:'black',fontWeight: 900, mx: 4,my:2, fontSize:'20px'}}>Contact</Button>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+  <Button sx={{ color: 'black', fontWeight: 900, mx: 4, my: 2, fontSize: '20px' }}>
+    Home
+  </Button>
+</Link>
+                    <Link to="/reco" style={{ textDecoration: 'none' }}>
+  <Button sx={{ color: 'black', fontWeight: 900, mx: 4, my: 2, fontSize: '20px' }}>
+    Recommendation
+  </Button>
+</Link>
+
+<Link to="/con" style={{ textDecoration: 'none' }}>
+  <Button sx={{ color: 'black', fontWeight: 900, mx: 4, my: 2, fontSize: '20px' }}>
+    Contact
+  </Button>
+</Link>
                 </Typography>
            
         
