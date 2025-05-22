@@ -6,10 +6,11 @@ function Home() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/books')
-      .then(res => setData(res.data))
-      .catch(err => console.error(err));
-  }, []);
+  axios.get('http://localhost:5000')
+    .then(res => setData(res.data))
+    .catch(err => console.error(err));
+}, []);
+
 
   return (
     <Box sx={{ minHeight: '100vh', background: 'linear-gradient(to right, #fdfbfb, #ebedee)', py: 6 }}>
@@ -36,7 +37,7 @@ function Home() {
                 <CardMedia
                   component="img"
                   height="250"
-                  image={row['image-m']}
+                  image={row['image']}
                   alt={row['book-name']}
                   sx={{ objectFit: 'cover', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
                 />
@@ -50,7 +51,7 @@ function Home() {
                     Author: {row['author']}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Votes: {row['nim-rating']}
+                    Votes: {row['num-rating']}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Rating: ⭐ {row['avg-rating'].toFixed(1)}
