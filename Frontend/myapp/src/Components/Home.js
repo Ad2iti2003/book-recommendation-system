@@ -24,7 +24,7 @@ function Home() {
             <Grid item key={idx} xs={12} sm={6} md={4} lg={3} xl={2}>
               <Card
                 sx={{
-                  height: '100%',
+                  height: '80vh',
                   borderRadius: 3,
                   boxShadow: 3,
                   transition: 'transform 0.3s, box-shadow 0.3s',
@@ -36,14 +36,14 @@ function Home() {
               >
                 <CardMedia
                   component="img"
-                  height="250"
+                  height="280"
                   image={row['image']}
                   alt={row['book-name']}
-                  sx={{ objectFit: 'cover', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                  sx={{ objectFit: 'cover', borderTopLeftRadius: 12, borderTopRightRadius: 12 , Width: '150px'}}
                 />
                 <CardContent>
                   <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 1, fontSize: '1rem' }}>
-                    {row['book-name']?.length > 45
+                    {row['book-name']?.length > 40
                       ? row['book-name'].slice(0, 45) + '...'
                       : row['book-name']}
                   </Typography>
