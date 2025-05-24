@@ -22,6 +22,12 @@ def get_popular_books():
         })
     return jsonify(data)
 
+@app.route('/reco', methods=['GET'])
+def recommend_ui():
+    data = []
+    
+    return jsonify(data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
