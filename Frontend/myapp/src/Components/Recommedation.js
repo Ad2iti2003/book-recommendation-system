@@ -54,7 +54,7 @@ function Recommendation() {
     <Box sx={{ m: 8 }}>
       <Container>
         <Typography variant="h4" gutterBottom>
-          📚 Book Recommendations
+          📚 Book Recommended
         </Typography>
 
         <form onSubmit={handleSubmit}>
