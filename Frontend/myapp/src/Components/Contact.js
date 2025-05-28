@@ -34,7 +34,7 @@ function Contact() {
         <Grid item xs={12} md={6}>
           <Box
             component="img"
-            src="https://sunwebtechnologies.com/images/projects/mobile-ourproject1.png"
+            src="https://cdn.dribbble.com/users/620666/screenshots/6117140/16_12_p2_4x.png"
             alt="Contact Us"
             sx={{
               width: '100%', maxWidth: 450, height: { xs: 250, md: 540 },
