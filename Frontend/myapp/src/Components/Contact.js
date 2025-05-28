@@ -1,76 +1,70 @@
-import React from 'react';
+// Contact.js
+import React, { useState } from 'react';
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import axios from 'axios';
 
 function Contact() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/send_email', form);
+      alert('Message sent successfully!');
+      setForm({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send message.');
+    }
+  };
+
   return (
-    <Box sx={{ px: { xs: 2, md: 10 }, py: 5, bgcolor: '#f0f4ff' }}>
-      <Grid container spacing={4} alignItems="center">
-        {/* Left Image Section */}
+    <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 4, md: 8 }, bgcolor: '#f0f4ff' }}>
+      <Grid container spacing={4} alignItems="center" justifyContent="center">
+        {/* Image and form layout */}
         <Grid item xs={12} md={6}>
           <Box
             component="img"
-            src="https://th.bing.com/th/id/OIP.T-yEY5SykAYSagyLQCtNlQHaGo?cb=iwp2&pid=ImgDet&w=191&h=170&c=7"
+            src="https://cdn.dribbble.com/users/2054560/screenshots/13099316/map_screen_dribbble_swati_nirwal_4x.png"
             alt="Contact Us"
             sx={{
-              width: 100,
-              borderRadius: 4,
-              boxShadow: 3,
-              maxHeight: 400,
-              objectFit: 'cover',
+              width: '100%', maxWidth: 450, height: { xs: 250, md: 540 },
+              borderRadius: 4, boxShadow: 3, objectFit: 'cover', mx: 'auto', display: 'block',
             }}
           />
         </Grid>
 
-        {/* Right Contact Form */}
         <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              p: 4,
-              bgcolor: '#ffffff',
-              borderRadius: 4,
-              boxShadow: 4,
-            }}
-          >
-            <Typography variant="h4" gutterBottom color="primary">
+          <Box sx={{ p: { xs: 3, md: 5 }, bgcolor: '#fff', borderRadius: 4, boxShadow: 4, minWidth: 350, mx: 'auto' }}>
+            <Typography variant="h4" color="primary" sx={{ textAlign: 'center', mb: 3 }}>
               Contact Us
             </Typography>
-
-            <form noValidate autoComplete="off">
-              <Box sx={{ mb: 2 }}>
-                <TextField
-                  fullWidth
-                  label="Name"
-                  variant="outlined"
-                  required
-                />
-              </Box>
-
-              <Box sx={{ mb: 2 }}>
-                <TextField
-                  fullWidth
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                  required
-                />
-              </Box>
-
-              <Box sx={{ mb: 3 }}>
-                <TextField
-                  fullWidth
-                  label="Phone Number"
-                  type="tel"
-                  variant="outlined"
-                  required
-                />
-              </Box>
-
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-              >
+            <form onSubmit={handleSubmit}>
+              {['name', 'email', 'phone', 'message'].map((field, idx) => (
+                <Box sx={{ mb: 2 }} key={idx}>
+                  <TextField
+                    fullWidth
+                    label={field.charAt(0).toUpperCase() + field.slice(1)}
+                    name={field}
+                    type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
+                    multiline={field === 'message'}
+                    rows={field === 'message' ? 4 : 1}
+                    value={form[field]}
+                    onChange={handleChange}
+                    required
+                  />
+                </Box>
+              ))}
+              <Button variant="contained" color="primary" fullWidth type="submit">
                 Submit
               </Button>
             </form>
@@ -82,6 +76,8 @@ function Contact() {
 }
 
 export default Contact;
+
+
 
 
 

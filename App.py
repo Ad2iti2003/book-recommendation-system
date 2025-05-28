@@ -1,10 +1,46 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from flask_mail import Mail, Message
 import pickle
 import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
+
+
+# Configure Flask-Mail
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME='akumari252003@gmail.com',       # Replace with your Gmail
+    MAIL_PASSWORD='cabm qfsp okgw ieuz'           # Use an App Password (NOT your Gmail password)
+)
+
+mail = Mail(app)
+
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    data = request.json
+    name = data.get('name')
+    email = data.get('email')
+    phone = data.get('phone')
+    message = data.get('message')
+
+    msg = Message(
+        subject=f'New Contact Form Submission from {name}',
+        sender=app.config['MAIL_USERNAME'],
+        recipients=['akumari252003@gmail.com'],  # Your receiving email
+        body=f"""
+Name: {name}
+Email: {email}
+Phone: {phone}
+Message:
+{message}
+"""
+    )
+    mail.send(msg)
+    return jsonify({'status': 'success'}), 200
 
 # Load the data
 popular_df = pickle.load(open('popular.pkl', 'rb'))
