@@ -44,7 +44,7 @@ function Contact() {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Box sx={{ p: { xs: 3, md: 5 }, bgcolor: '#fff', borderRadius: 4, boxShadow: 4, minWidth: 350, mx: 'auto' }}>
+          <Box sx={{ p: { xs: 3, md: 5 }, bgcolor: '#fff', borderRadius: 4, boxShadow: 4, minWidth:{xs:250, md:350}, mx: 'auto' }}>
             <Typography variant="h4" color="primary" sx={{ textAlign: 'center', mb: 3 }}>
               Contact Us
             </Typography>
